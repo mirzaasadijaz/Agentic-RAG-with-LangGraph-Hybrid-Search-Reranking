@@ -1,0 +1,28 @@
+# Run the agent in a container. Typical flow:
+#
+#   cp .env.example .env                  # then fill in your API keys
+#   docker compose build
+#   docker compose up                     # Use UP for Streamlit, not run!
+#
+services:
+  agentic-rag:
+    build: .
+    image: mirzaasadijaz/agentic-rag-langgraph:latest
+    env_file: .env
+    ports:
+      - "8502:8501" 
+    stdin_open: true 
+    tty: true
+    volumes:
+      # Source documents: edit them on your machine, then re-run ingest.py.
+      # Read-only, since the container never writes here.
+      - ./data:/app/data:ro
+      # The Chroma vector index and the downloaded embedding/reranker models
+      # persist here between runs. Wipe both with: docker compose down -v
+      - chroma-db:/app/chroma_db
+      - model-cache:/app/.cache
+
+# THIS SECTION IS REQUIRED AT THE BOTTOM
+volumes:
+  chroma-db:
+  model-cache:

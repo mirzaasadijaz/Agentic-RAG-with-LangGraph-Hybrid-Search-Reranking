@@ -1,0 +1,26 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	retrieve(retrieve)
+	grade_documents(grade_documents)
+	generate(generate)
+	transform_query(transform_query)
+	web_search(web_search)
+	__end__([<p>__end__</p>]):::last
+	__start__ -. &nbsp;vectorstore&nbsp; .-> retrieve;
+	__start__ -.-> web_search;
+	generate -. &nbsp;useful&nbsp; .-> __end__;
+	generate -. &nbsp;not supported&nbsp; .-> transform_query;
+	grade_documents -.-> generate;
+	grade_documents -.-> transform_query;
+	grade_documents -.-> web_search;
+	retrieve --> grade_documents;
+	transform_query --> retrieve;
+	web_search --> generate;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

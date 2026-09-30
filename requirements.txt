@@ -1,0 +1,35 @@
+# Agentic graph
+langgraph>=1.2.12
+langchain>=1.4.2
+langchain-core>=1.6.5
+
+# LLM providers: Groq (routing/grading/rewriting) + Google Gemini (generation).
+# See src/llm.py to point either role at the other provider, or add one more.
+langchain-groq>=1.1.3
+langchain-google-genai>=4.4.0
+
+# Hybrid retrieval: BM25Retriever lives in langchain-community; EnsembleRetriever
+# and ContextualCompressionRetriever moved to langchain-classic in LangChain 1.0.
+langchain-community>=0.4.2
+langchain-classic>=1.0.8
+langchain-chroma>=1.1.0
+langchain-text-splitters>=1.1.2
+
+# Local dense embeddings (HuggingFace/sentence-transformers -> pulls in torch,
+# CPU is fine) + local cross-encoder reranking (FlashRank, ONNX, no torch).
+langchain-huggingface>=1.2.2
+sentence-transformers>=3.0.0
+flashrank>=0.2.10
+rank_bm25>=0.2.2
+chromadb>=1.5.9
+
+# Web search fallback tool (needs a free key from https://tavily.com)
+langchain-tavily>=0.2.18
+
+pydantic>=2.13.5
+python-dotenv>=1.2.2
+
+streamlit
+
+pymupdf
+docx2txt

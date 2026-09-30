@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Secrets: never commit real keys (.env.example is the safe template)
+.env
+
+# Generated at runtime: the vector index and downloaded model caches
+chroma_db/
+.cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,3 @@
+# Everything needed to run the test suite (pytest tests/).
+-r requirements.txt
+pytest>=9.1.1

@@ -1,0 +1,3 @@
+# Normalize line endings to LF. Containers run Linux, and CRLF endings checked
+# out on Windows can break scripts and Docker builds.
+* text=auto eol=lf
