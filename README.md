@@ -238,29 +238,6 @@ Everything is in `src/config.py`:
 - **Vector store** — any LangChain `VectorStore` (FAISS, Pinecone, Qdrant, …)
   is a drop-in replacement for the Chroma retriever.
 
-## Testing and CI
-
-```bash
-pip install -r requirements-dev.txt
-python -m pytest tests/ -v
-```
-
-- `test_retrieval.py` — chunking and BM25 run for real; the dense half is a
-  lightweight fake so the suite stays offline, while the real
-  `EnsembleRetriever` fusion path is still exercised. Also covers index
-  rebuilds (never duplicated) and reranker wiring.
-- `test_llm.py` — both providers construct correctly, unknown providers fail
-  loudly, and structured-output chains work. Uses dummy keys; no network.
-- `test_graph.py` — runs the **compiled graph** with every LLM call mocked:
-  the happy path, the "no relevant docs → retries → web search" loop, the
-  "hallucinated generation → retries → forced termination" loop, and direct
-  web-search routing.
-
-GitHub Actions (`.github/workflows/ci.yml`) runs on every PR and push to `main`:
-a **test** job (no secrets needed, safe for forks) and a **docker-build** job
-that builds the image and smoke-tests it by compiling the graph inside the
-container.
-
 ## Exporting the graph diagram
 
 ```bash
